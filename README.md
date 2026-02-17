@@ -276,12 +276,14 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 For questions, issues, or collaboration inquiries:
 
 **Abhijeet Kumar**
+
 📧 [cs22s501@iittp.ac.in](mailto:cs22s501@iittp.ac.in)
+
 📧 [abhijeetkumar.071@gmail.com](mailto:abhijeetkumar.071@gmail.com)
 
 Alternatively, please open a GitHub issue for technical discussions or bug reports.
 
-*To open a GitHub Issue
+To open a GitHub Issue
 * Include:
 
   * GPU model
