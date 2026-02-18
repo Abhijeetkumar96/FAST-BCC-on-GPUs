@@ -1,4 +1,3 @@
-
 # Fast-BCC on GPUs
 
 This repository accompanies the paper:
@@ -100,7 +99,7 @@ Where necessary, we:
 
 The basic experimental datasets can be downloaded from:
 
- [https://tinyurl.com/FAST-BCC-Dataset](https://tinyurl.com/FAST-BCC-Dataset)
+ [FAST-BCC-Dataset](https://tinyurl.com/fast-BCC-Filter-datasets)
 
 ---
 
@@ -136,7 +135,7 @@ This builds and runs all implementations on available datasets.
 Optional configuration:
 
 ```bash
-CPU_ROUNDS=5 GPU_SHARE=0.8 BATCH_SIZE=500000 bash run_all.sh
+CPU_ROUNDS=5 BATCH_SIZE=500000 bash run_all.sh
 ```
 
 ---
@@ -283,11 +282,9 @@ For questions, issues, or collaboration inquiries:
 
 Alternatively, please open a GitHub issue for technical discussions or bug reports.
 
-To open a GitHub Issue
-* Include:
+### To open a GitHub Issue, please include:
 
-  * GPU model
-  * CUDA version (`nvcc --version`)
-  * Graph size (#vertices, #edges)
-  * Full error message
----
+* GPU model
+* CUDA version (`nvcc --version`)
+* Graph size (#vertices, #edges)
+* Full error message
