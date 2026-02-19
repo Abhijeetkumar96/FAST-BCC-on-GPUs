@@ -7,16 +7,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # -----------------------------------------------------------------------------
 # Configuration (override via env vars when calling the script)
 # -----------------------------------------------------------------------------
-DATASETS_ROOT="${DATASETS_ROOT:-$ROOT/depth/datasets}"
-CPU_DATASETS="${CPU_DATASETS:-$DATASETS_ROOT/*.txt}"
-UVM_DATASETS="${UVM_DATASETS:-$ROOT/baselines/uvm/g*.txt}"
-GPU_WITH_DATASETS="${GPU_WITH_DATASETS:-$ROOT/gpu/with_filter/g*.txt}"
-GPU_WITHOUT_DATASETS="${GPU_WITHOUT_DATASETS:-$ROOT/gpu/without_filter/g*.txt}"
-EXT_STREAMS_DATASETS="${EXT_STREAMS_DATASETS:-$ROOT/external/streams/input.txt}"
-EXT_NOSTREAMS_DATASETS="${EXT_NOSTREAMS_DATASETS:-$ROOT/external/without_streams/input.txt}"
-WK2017_DATASETS="${WK2017_DATASETS:-$ROOT/baselines/wk-bcc-2017/datasets/*.txt}"
-WK2018_DATASETS="${WK2018_DATASETS:-$ROOT/baselines/wk-bcc-2018/datasets/*.txt}"
-DEPTH_DATASETS="${DEPTH_DATASETS:-$DATASETS_ROOT/*.txt}"
+DATASETS_DIR="/datasets"
 
 CPU_ROUNDS="${CPU_ROUNDS:-5}"
 BATCH_SIZE="${BATCH_SIZE:-1048576}"
@@ -60,14 +51,14 @@ make -j -C "$ROOT"
 # -----------------------------------------------------------------------------
 # Runs (edit dataset globs above as needed)
 # -----------------------------------------------------------------------------
-run_task "cpu-baseline" "$ROOT/baselines/cpu/src" "./FAST_BCC {file} {rounds}" "$CPU_DATASETS"
-run_task "uvm" "$ROOT/baselines/uvm" "./main {file}" "$UVM_DATASETS"
-run_task "gpu-with-filter" "$ROOT/gpu/with_filter" "./main {file}" "$GPU_WITH_DATASETS"
-run_task "gpu-without-filter" "$ROOT/gpu/without_filter" "./main {file}" "$GPU_WITHOUT_DATASETS"
-run_task "external-streams" "$ROOT/external/streams" "./ext-bcc {file} {gpu_share} {batch}" "$EXT_STREAMS_DATASETS"
-run_task "external-no-streams" "$ROOT/external/without_streams" "./ext-bcc {file} {gpu_share} {batch}" "$EXT_NOSTREAMS_DATASETS"
-run_task "wk-bcc-2017" "$ROOT/baselines/wk-bcc-2017" "./bin/cuda_bcc -i {file} -a ebcc" "$WK2017_DATASETS"
-run_task "wk-bcc-2018" "$ROOT/baselines/wk-bcc-2018" "./bin/main {file} {k_out} {verbose}" "$WK2018_DATASETS"
-run_task "depth-bfs" "$ROOT/depth" "./bfs {file} {src}" "$DEPTH_DATASETS"
+run_task "cpu-baseline" "$ROOT/baselines/cpu/src" "./FAST_BCC {file} {rounds}" "$DATASETS_DIR"
+run_task "uvm" "$ROOT/baselines/uvm" "./main {file}" "$DATASETS_DIR"
+run_task "gpu-with-filter" "$ROOT/gpu/with_filter" "./main {file}" "$DATASETS_DIR"
+run_task "gpu-without-filter" "$ROOT/gpu/without_filter" "./main {file}" "$DATASETS_DIR"
+run_task "external-streams" "$ROOT/external/streams" "./ext-bcc {file} {gpu_share} {batch}" "$DATASETS_DIR"
+run_task "external-no-streams" "$ROOT/external/without_streams" "./ext-bcc {file} {gpu_share} {batch}" "$DATASETS_DIR"
+run_task "wk-bcc-2017" "$ROOT/baselines/wk-bcc-2017" "./bin/cuda_bcc -i {file} -a ebcc" "$DATASETS_DIR"
+run_task "wk-bcc-2018" "$ROOT/baselines/wk-bcc-2018" "./bin/main {file} {k_out} {verbose}" "$DATASETS_DIR"
+run_task "depth-bfs" "$ROOT/depth" "./bfs {file} {src}" "$DATASETS_DIR"
 
 log "done" "all tasks completed"
